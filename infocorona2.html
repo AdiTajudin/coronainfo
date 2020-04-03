@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>coronainfo</title>
+	<link rel="stylesheet" type="text/css" href="style.css"></li>
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+<body>
+	<div id="info">
+<i id="covid19" class="fas fa-virus"></i>
+		Info Corona
+		</div>
+     </center>
+     <br/>
+     <center>
+     <h2>Indonesia</h2>	
+	<div class="card positif">
+		<h2>
+		 	Positif
+		 <i class="fas fa-frown"></i>
+		 </h2>
+        <div id="positif">
+        </div>
+            
+	<center>
+    </div>
+
+	<div class="card dua">
+		 <H2>
+		 	Sembuh
+		 	<i class="fas fa-smile-beam"></i>
+		 </h2>
+                <div id="sembuh">
+            </div>
+	</div>		
+
+	<div class="card tiga">
+		 <h2>
+		 	Meninggal
+		 <i class="fas fa-sad-cry"></i>
+		 </h2>
+            <div id="meninggal">
+            </div>
+	</div>
+</center>
+<br/>
+		<center><h2>Jawa Barat</h2></center>
+<center>
+	<div class="card positif">
+		<h2>
+		 	Positif
+		 <i class="fas fa-frown"></i>
+		 </h2>
+        <div id="positif-jabar">
+        </div>
+            
+    </div>
+
+	<div class="card dua">
+		 <H2>
+		 	Sembuh
+		 	<i class="fas fa-smile-beam"></i>
+		 </h2>
+                <div id="sembuh-jabar">
+            </div>
+	</div>		
+
+	<div class="card tiga">
+		 <h2>
+		 	Meninggal
+		 <i class="fas fa-sad-cry"></i>
+		 </h2>
+            <div id="meninggal-jabar">
+            </div>
+	</div>
+</center>
+<br/>
+<div class="footer">
+	<div>
+		Data Real Time Perkembangan Covid-19
+	</div>
+	<br/>
+	<div>
+		&copy; Adi Tadjudin
+	</div>
+</div>
+<script type="text/javascript">
+fetch('https://corona-api.pacilingan.com/indonesia')
+  .then(
+    function(response) {
+      if (response.status !== 200) {
+        console.log('Looks like there was a problem. Status Code: ' +
+          response.status);
+        return;
+      }
+
+      // Examine the text in the response
+      response.json().then(function(data) {
+        console.log(data);
+        var sembuh = document.getElementById('sembuh');
+        sembuh.append(data.data[0].sembuh);
+        var positif = document.getElementById('positif');
+        positif.append(data.data[0].positif);
+        var meninggal = document.getElementById('meninggal');
+        meninggal.append(data.data[0].meninggal);
+      });
+    }
+  )
+  .catch(function(err) {
+    console.log('Fetch Error :-S', err);
+  });
+
+  fetch('https://corona-api.pacilingan.com/jabar')
+  .then(
+    function(response) {
+      if (response.status !== 200) {
+        console.log('Looks like there was a problem. Status Code: ' +
+          response.status);
+        return;
+      }
+
+      // Examine the text in the response
+      response.json().then(function(data) {
+        console.log(data);
+        var sembuh = document.getElementById('sembuh-jabar');
+        sembuh.append(data.data.sembuh);
+        var positif = document.getElementById('positif-jabar');
+        positif.append(data.data.positif);
+        var meninggal = document.getElementById('meninggal-jabar');
+        meninggal.append(data.data.meninggal);
+      });
+    }
+  )
+  .catch(function(err) {
+    console.log('Fetch Error :-S', err);
+  });
+</script>
+
+</body>
+</html>
